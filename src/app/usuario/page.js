@@ -1,12 +1,18 @@
-export default () => (
-    <>
-    
-        <h1>Algum texto aqui</h1>
-        <p>Algum  outro texto aqui</p>
-    <p>DARLLA, sobe o terminal </p>
-    
-    
-    </>
-
-
-)
+import db from "@/lib/db"
+export default async () => {
+    const usuario = await db.query("select * from usuario")
+ return (<>
+    <h1>Lista de alunos</h1>
+    <div>
+      {
+         usuario.rows.map( 
+            a => (
+               <div>
+                  {a.nome} faz parte do cargo {a.cargo}
+               </div>
+            ) 
+         )
+      }
+   </div>
+ </>);
+}
