@@ -2,6 +2,8 @@ body {
     background-color:black;
 }
 
+
+
 .texto-centralizado {
     position: absolute;
     left: 50vw;
@@ -18,7 +20,7 @@ body {
 
 h1 {
     font-size: 3em;
-    color: white
+    color: white;
 }
 
 h3{
@@ -47,3 +49,27 @@ h3{
 .botom {
     float: left;
 }
+
+.container {
+      display: flex;
+  align-items: center;
+   
+}
+
+.container img {
+  margin-right: 350px;
+}
+
+
+.container button { 
+    display:inline-block;
+    margin-left: 20px;
+    width: 250px;
+    height: 45px;
+    border-radius: 20px;
+    border: 2px solid #D5AD0C;
+    background-color: #D5AD0C;
+    color: black;
+
+}
+

@@ -10,14 +10,15 @@ export default async () => {
     <h3>selecione serviço, data e hora</h3>
     </div>
 
-    <div>
-
-   <button class="botom">serviço</button>
-   <button>data e hora</button>
-   <button> selecionar</button>
-   </div>
-
+    
+   <div class = "container">
     <img class="imagem" src= "image-barbearia.jpg"/>
+    <button>Serviço</button>
+    <button>Data e Hora</button>
+   
+    </div>
+
+    
 
     <div class="barra"></div>
 
