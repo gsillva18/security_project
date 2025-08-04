@@ -6,13 +6,11 @@ import { NextResponse } from 'next/server'
    const query = `
     SELECT 
        a.datahora,  
-       s.nome,
+       a.nomeservico,
        a.concluido
 
-       FROM atendimento a  
-       JOIN servico s ON a.servicoid = s.id 
-      
-    	where a.consumidorid = ${id}
+       FROM agendamento a
+    	 where a.consumidorid = ${id}
        ORDER BY a.datahora DESC;
        `;
     try {

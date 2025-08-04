@@ -1,6 +1,6 @@
 
 import { NextResponse } from 'next/server'
-import pool from "../../../lib/db";
+import pool from "../../lib/db";
 
 export async function GET() {
   try {
@@ -16,11 +16,11 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    const { nome, datahora, concluido} = await request.json()
+    const {nomeservico, datahora, concluido} = await request.json()
     const client = await pool.connect()
     await client.query(
-      'INSERT INTO atendimento (nomeid, datahora, concluido) VALUES ($1, $2, $3)',      
-      [nomeid, datahora, concluido]
+      'INSERT INTO agendamento (nomeservico, datahora, concluido) VALUES ($1, $2, $3)',      
+      [nomeservico, datahora, concluido]
     )
     client.release()
     return NextResponse.json({ status: 201 })

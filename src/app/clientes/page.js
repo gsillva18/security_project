@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 
-import ClienteForm from '../formulario/ClienteForm'
-import ClienteList from '../formulario/ClienteList'
+import ClienteForm from '../components/ClienteForm'
+import ClienteList from '../components/ClienteList'
 
 export default function Home() {
     const [clientes, setClientes] = useState([])
@@ -50,3 +50,7 @@ export default function Home() {
         </div>
     )
 }
+
+
+
+
