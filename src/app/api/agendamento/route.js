@@ -9,18 +9,18 @@ export async function GET() {
     client.release()
     return NextResponse.json(result.rows)
   } catch (error) {
-    console.error('Erro listando alunos:', error)
+    console.error('Erro listando clients:', error)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
   }
 }
 
 export async function POST(request) {
   try {
-    const {nomeservico, datahora, concluido} = await request.json()
+    const {nomeservico, datahora} = await request.json()
     const client = await pool.connect()
     await client.query(
-      'INSERT INTO agendamento (nomeservico, datahora, concluido) VALUES ($1, $2, $3)',      
-      [nomeservico, datahora, concluido]
+      'INSERT INTO agendamento (nomeservico, datahora) VALUES ($1, $2)',      
+      [nomeservico, datahora]
     )
     client.release()
     return NextResponse.json({ status: 201 })

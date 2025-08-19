@@ -8,32 +8,32 @@ import ClienteList from '../components/ClienteList'
 export default function Home() {
     const [clientes, setClientes] = useState([])
 
-    useEffect(() => {
+    useEffect(() => {       
         fetchClientes()
     }, [])
 
     const fetchClientes = async () => {
-        const response = await fetch('/api') 
+        const response = await fetch('/api/agendamento') 
         const data = await response.json()
         setClientes(data)
-    }
+  
+}
 
     const addCliente = async (cliente) => {
-        const response = await fetch('/api', {
+        const response = await fetch('/api/agendamento', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(cliente)
         })
-
         if (response.ok) {
             fetchClientes()
         }
     }
 
     const deleteCliente = async (id) => {
-        const response = await fetch(`/api/${id}`, {
+        const response = await fetch(`/api/agendamento/${id}`, {
             method: 'DELETE'
         })
 
@@ -46,7 +46,7 @@ export default function Home() {
         <div>
             <h1>Gerenciamento de Clientes</h1>
             <ClienteForm onAddCliente={addCliente} />
-            <ClienteList Clientes={clientes} onDeleteCliente={deleteCliente} />
+            <ClienteList clientes={clientes} onDeleteCliente={deleteCliente} />
         </div>
     )
 }

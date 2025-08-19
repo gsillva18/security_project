@@ -1,17 +1,26 @@
-export default function ClienteList({Cliente, onDeleteCliente}) {
-    return (
-        <ul>
-            {Cliente.map((cliente) => (
-                <li key={Cliente.id} >
-                    <span>{Cliente.servicoid} - {Cliente.consumidorid} - {Cliente.datahora} - {Cliente.concluido ? 'Concluído' : 'Pendente'}</span>
-                    <button style={{backgroundColor:"transparent", color:"#F00"}}
-                    onClick={() => onDeleteCliente(Cliente.id)}
-                    >
-                    x
-                    </button>
-                </li>
-            ))}
+export default function ClienteList({ clientes = []}) {
+  return (
+    <ul>
+      {clientes.map((agendamento) => (
+        <li key={agendamento.agendamentoid}>
 
-        </ul>
-    )
+          <span>
+            {agendamento.nomeservico} - {new Date (agendamento.datahora).toLocaleString('pt-BR', {
+              dateStyle: 'short',
+              timeStyle: 'short'
+              
+            }
+            
+            )} - {agendamento.concluido ? 'Concluido': ' Pendente'}
+          </span> 
+          <input 
+           type="checkbox"
+           checked={agendamento.concluido}
+           readOnly
+           style={{marginLeft: '10px'}}
+          ></input>
+        </li>
+      ))}
+    </ul>
+  )
 }

@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         
         < header >
 
-        <h1>Cabeçalho </h1>
+       
         
         </header>
         {children}
