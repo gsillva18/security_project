@@ -1,7 +1,7 @@
 'use client'
  
 import { useState, useEffect } from 'react'
-
+import style from './page.module.css'
 import ClienteForm from '../components/ClienteForm'
 
 export default function Page(){
@@ -18,11 +18,9 @@ export default function Page(){
 
     return (
         <div>
-        
-            <h1> Agendamento </h1>
+         <h1 className={style.h1} > Agendamento </h1>
+         <h2 className={style.h2}> E aí, </h2>
             <ClienteForm onAddCliente={addCliente}/>
-           
-        
         </div>
     )
 }

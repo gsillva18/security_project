@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import style from "./styles.module.css"
 
 export default function AutenticarForm({ onAddConsumidor}) {
     const [nome, setNome] = useState('')
@@ -15,7 +16,7 @@ export default function AutenticarForm({ onAddConsumidor}) {
 
     return (
       <form onSubmit={handleSubmit}>
-        
+        <div className={style.logar}>
             <input
               type="text"
               placeholder='Nome'
@@ -23,6 +24,7 @@ export default function AutenticarForm({ onAddConsumidor}) {
               onChange={(e) => setNome(e.target.value)}
               required
             />
+       </div>
        <br></br>
 
             <input 
@@ -43,7 +45,7 @@ export default function AutenticarForm({ onAddConsumidor}) {
 
             <br></br>
 
-            <button type='submit'>
+            <button  type='submit'>
                        Acessar
 
             </button>

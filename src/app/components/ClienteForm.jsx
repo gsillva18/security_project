@@ -1,5 +1,7 @@
 import { useState }  from 'react'
 
+import style from './styles.module.css';
+
 export default function ClienteForm({ onAddCliente }) {
     const [datahora, setDatahora] = useState('')
     const [nomeservico, setNomeservico] = useState('')
@@ -15,7 +17,8 @@ export default function ClienteForm({ onAddCliente }) {
     return (
         <form onSubmit={handleSubmit}>  
 
-        <h2> Qual o serviço de hoje?</h2>
+        <h2 className={style.h2}> Qual o serviço de hoje?</h2>
+        
         <br></br>
         <select
     
@@ -42,10 +45,14 @@ export default function ClienteForm({ onAddCliente }) {
 
         <br></br>
         
-        <button type="submit">
+        <button className={style.botao} type="submit">
             Agendar
 
         </button>
+
+        <div className={style.barra}>
+
+        </div>
         
         
         </form>

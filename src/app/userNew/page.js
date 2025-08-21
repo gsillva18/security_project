@@ -2,7 +2,9 @@
 
 import { useState, useEffect} from 'react'
 import AutenticarForm from '../components/AutenticarForm'
-
+import style from "./page.module.css"
+   
+    
 export default function Home() {
     const addConsumidor = async (consumidor) => {
         const response = await fetch('/api/autenticacao/signup', {
@@ -17,7 +19,7 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <div className={style.container}>
 
             <h1> Sign-up </h1>
             <AutenticarForm onAddConsumidor={addConsumidor}/>
