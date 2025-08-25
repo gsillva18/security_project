@@ -1,6 +1,9 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation' 
+import style from './page.module.css'
+
+
 
 
 export default function ClienteLogin() {
@@ -31,41 +34,54 @@ export default function ClienteLogin() {
       alert('Erro de conexão com o servidor.')
     }
   }
+  
 
+  
   return (
-    
-          <form onSubmit={handleLogin}>
-            <label htmlFor="nome">nome:</label>
-            <input
-              type="name"
-              id="nome"
-              name="nome"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              required
-            />
-            <br></br>
+    <div>
+      <h2 className={style.h2}>Bem-vindo!</h2>
+      <p  className={style.texto}> Faça login  para acessar a página </p>
+      <p className={style.text}> Ainda não tem uma conta? <br></br>
+        Cadastre-se e aproveite o melhor da barbearia!</p>
+ 
+ <a href="userNew"  className={style.outrapagina}> Cadastrar</a>
 
-            <label htmlFor="senha">Senha:</label>
-            <div>
-              <input
-                type="password"
-                id="senha"
-                name="senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                required
-              />
-            </div>
+    <form onSubmit={handleLogin}>
+    <div className={style.box}>
+      <h2 className={style.titulo}>Login</h2>
 
-        
-            <br></br>
+      <label className={style.name} htmlFor="nome">Nome:</label>
+      <input
+        className={style.nome}
+        type="text"
+        id="nome"
+        name="nome"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+        required
+      />
 
-            <button type="submit" >Entrar</button>
+      <label className={style.senha} htmlFor="senha">Senha:</label>
+      <input
+        className={style.password}
+        type="password"
+        id="senha"
+        name="senha"
+        value={senha}
+        onChange={(e) => setSenha(e.target.value)}
+        required
+      />
 
-             <a href="userNew" className="button"> Ir para a página de login</a>
-          </form>
+      <h4 className={style.remember}>Esqueceu a senha?</h4>
 
-         
-  )
+      <button className={style.entrar} type="submit">Entrar</button>
+      <div className={style.barra}></div>
+      <div className={style.barra2}></div>
+    </div>
+  </form>
+</div>
+
+
+)
 }
+

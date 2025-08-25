@@ -16,42 +16,42 @@ export default function AutenticarForm({ onAddConsumidor}) {
 
     return (
       <form onSubmit={handleSubmit}>
-        <div className={style.logar}>
-            <input
+
+        <label className={style.name} htmlFor="nome"> Nome:</label>
+        <br></br>
+            <input className={style.logar}
               type="text"
-              placeholder='Nome'
               value={nome}
               onChange={(e) => setNome(e.target.value)}
               required
             />
-       </div>
+     
        <br></br>
-
-            <input 
+        <label className={style.email} htmlFor="email">Email:</label>
+        <br></br>
+            <input className={style.campoemail}
               type='email'
-              placeholder='e-mail'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
         <br></br>
-            <input
+        <label className={style.senha} htmlFor="senha">Senha:</label>
+        <br></br>
+            <input className={style.camposenha}
               type='password'
-              placeholder='senha'
+              
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               required
             />
 
             <br></br>
-
-            <button  type='submit'>
-                       Acessar
+            <a href="novoLogin"> </a>
+            <button className={style.button} type='submit'>
+                       Cadastrar
 
             </button>
-
-
-
 
       </form>
     )

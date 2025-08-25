@@ -20,7 +20,7 @@ export default function ClienteForm({ onAddCliente }) {
         <h2 className={style.h2}> Qual o serviço de hoje?</h2>
         
         <br></br>
-        <select
+        <select className={style.container}
     
         value={nomeservico}
         onChange={(e) => setNomeservico(e.target.value)}
@@ -34,9 +34,9 @@ export default function ClienteForm({ onAddCliente }) {
         </select>
    
 
-        <h2>Escolha a data e o horário </h2>
+        <h2 className={style.h22}>Escolha o horário </h2>
         <br></br>
-        <input
+        <input className={style.horario}
         type="datetime-local"
         value={datahora}
         onChange={(e) => setDatahora(e.target.value)}

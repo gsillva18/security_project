@@ -1,8 +1,9 @@
 .h2 {
   color:rgb(255, 255, 255);
   position: relative;
-  top: 40px;
-  left: 30px;
+  top: 240px;
+  left: 150px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .botao {
@@ -15,9 +16,12 @@
   cursor: pointer;
   transition: color .3s ease, box-shadow .3s ease, transform .1s ease;
   position: relative;
-  top: 580px;
+  top: 520px;
   left: 1200px;
   font-size: 30px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  
 }
 .botao:hover {
   color: rgb(0, 0, 0);
@@ -44,3 +48,105 @@ html, body {
   height: 100%;
 }
 
+.container {
+  position: relative;
+  top: 300px;
+  left: 150px;
+  padding: 14px 200px;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  color: black;
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.horario{
+  position: relative;
+  top: 480px;
+  left: 150px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  padding: 14px 200px;
+  color:black;
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.h22{
+  position: relative;
+  top: 420px;
+  left: 150px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.logar{
+
+  background-color: #b9b5b5 ;
+  color:black;
+  font-size: 20px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  border-color: #b9b5b5 ;
+  padding: 2px 35px;
+
+}
+
+.campoemail {
+  background-color: #b9b5b5;
+  color: black;
+  font-size: 20px;
+  margin-bottom: 15px;
+  border-color: #b9b5b5;
+  border-radius: 20px;
+  padding: 2px 35px;
+}
+
+.name {
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+ 
+}
+
+.email {
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+ 
+}
+
+.senha {
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+}
+
+.camposenha {
+  background-color: #b9b5b5;
+  color:black;
+  font-size: 20px;
+  margin-bottom: 35px;
+  border-color: #b9b5b5;
+  border-radius: 20px;
+  padding: 2px 35px;
+
+}
+
+
+.button {
+  background-color: #808080;
+  border-color: 2px solid #808080;
+  border-radius: 10px;
+  color: rgb(0, 0, 0); 
+  font-family: 'Times New Roman', Times, serif;
+  padding: 7px 120px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #d8d2d2;
+}

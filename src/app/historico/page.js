@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import ClienteList from '@/app/components/ClienteList'
+import style from './page.module.css'
 
 export default function Home(){
     const[clientes, setClientes] = useState([])
@@ -18,7 +19,7 @@ export default function Home(){
 
     return (
         <div>
-            <h1> Seu histórico </h1>
+            <h1 className={style.h1}> Seu histórico </h1>
             <ClienteList clientes={clientes}/>
         </div>
     )

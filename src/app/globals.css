@@ -5,7 +5,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #000000;
     --foreground: #ededed;
   }
 }
@@ -39,4 +39,13 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+barra{
+  background-color: #e9ca4f;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45px;
 }

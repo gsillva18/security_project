@@ -1,16 +1,18 @@
 .h1{
     color: #ffde59;
     position: relative;
-    top: 40px;
-    left: 30px;
-    font-size: 70px;
+    top: 130px;
+    left: 150px;
+    font-size: 60px;
+    font-family: 'Times New Roman', Times, serif;
 
 }
 
 .h2{
     color: white;
     position: relative;
-    top: 40px;
-    left: 30px;
+    top: 200px;
+    left: 150px;
+    font-family:  'Times New Roman', Times, serif;
 }
 
