@@ -21,6 +21,8 @@ export default function Home(){
         <div>
             <h1 className={style.h1}> Seu histórico </h1>
             <ClienteList clientes={clientes}/>
+
+            <div className={style.barra}></div>
         </div>
     )
 }

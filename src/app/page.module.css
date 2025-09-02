@@ -324,6 +324,13 @@ html, body {
 }
 
 
+.mapa {
+  position:relative;
+  margin-top: -270px;
+  margin-left: 1200px;
+  border-radius: 15px;
+}
+
 
 .section {
   scroll-margin-top: 45px; 

@@ -16,6 +16,33 @@ export default function Page(){
         alert('Agendamento feito')
     }
 
+     function horariosDisponiveis() {
+        const horarios = [];
+        const inicio =new Date();
+        inicio.setHours(0, 0, 0, 0);
+
+        const fim =  new Date ();
+        fim.setHours(23, 59, 59, 999)
+
+        for (let hora = inicio.getTime(); hora < fim.getTime(); hora += 15 * 60 *1000) {
+            const horaAtual = new Date(hora);
+            let disponivel = true;
+
+        for (const indisponivel of horariosIndisponiveis) {
+            if (horaAtual.getTime() >= indisponivel.inicio.getTime() &&
+                horaAtual.getTime() < indisponivel.fim.getTime()) {
+                disponivel = false;
+                break;
+                }
+        }
+        if (disponivel) {
+            horarios.push(horaAtual);
+        }
+     }
+
+     return horarios;
+    }
+
     return (
         <div>
          <h1 className={style.h1} > Agendamento </h1>
@@ -23,4 +50,5 @@ export default function Page(){
             <ClienteForm onAddCliente={addCliente}/>
         </div>
     )
-}
+    }
+

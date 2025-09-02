@@ -87,7 +87,7 @@ Dos cortes clássicos aos estilos modernos, aqui é o,
     <section id="localizacao" className={style.section}>
       <h1 className={style.local}> Onde estamos? </h1>
       <p className={style.text2}> Você nos encontra na Praça Dr. Cunha Lima, na Rua Epitácio Cunha Lima,  Areia - PB.</p>
- 
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.3518266415176!2d-35.705077523684125!3d-6.967756268227034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ac33b25cc61d17%3A0xf59a5436dc1b8036!2sBarbearia%20do%20Deda!5e0!3m2!1spt-BR!2sbr!4v1756246641833!5m2!1spt-BR!2sbr" width="450" height="300" className={style.mapa}></iframe>
     
 
     <div className={style.ret}>
