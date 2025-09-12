@@ -1,41 +1,37 @@
 'use client'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation' 
-import style from './page.module.css'
-
-
-
+import { useRouter } from 'next/navigation'
+import { useAuth } from '../context/AuthContext'
+import style from "./page.module.css"
 
 export default function ClienteLogin() {
   const [nome, setNome] = useState('')
   const [senha, setSenha] = useState('')
-
   const route = useRouter()
+  const { setUsuarioLogado } = useAuth()
 
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('/api/autenticacao/login', {
+      const res = await fetch('/api/autenticacao/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, senha })
       })
 
-      if (response.ok) {
-        const data = await response.json()
-        const id = data.id
-        route.push(`/perfil/${id}`)
+      if (res.ok) {
+        const data = await res.json()
+        setUsuarioLogado(data)
+        route.push('/perfil')
       } else {
-        const errorData = await response.json()
-        alert(`Erro ao fazer login: ${errorData.error}`)
+        const err = await res.json()
+        alert(err.error)
       }
     } catch (error) {
-      console.error('Erro ao fazer login:', error)
-      alert('Erro de conexão com o servidor.')
+      console.error(error)
+      alert('Erro de conexão')
     }
   }
-  
-
   
   return (
     <div>

@@ -15,6 +15,7 @@ export default function Home() {
     const fetchClientes = async () => {
         const response = await fetch('/api/agendamento') 
         const data = await response.json()
+        console.log("Dados recebidos da API:", data)
         setClientes(data)
   
 }
@@ -49,7 +50,7 @@ export default function Home() {
             <ClienteList clientes={clientes} onDeleteCliente={deleteCliente} />
         </div>
     )
-}
+}   
 
 
 

@@ -44,12 +44,12 @@ html, body {
   z-index: 1000;
 }
 
-.h1{
+.h1 {
   font-family: 'Times New Roman', Times, serif;
   color: #e9ca4f;
   font-size: 60px;
-  margin-left: 1050px;
-  margin-top: -900px;
+  margin-left: 1050px; /* ajuste para dentro da tela */
+  margin-top: 50px;
 }
 
   
@@ -67,7 +67,7 @@ html, body {
   font-size: 30px;
   color:white;
   margin-top: 60px;
-  margin-left: 1020;
+  margin-left: 1015px;
 }
 
 .p2 {

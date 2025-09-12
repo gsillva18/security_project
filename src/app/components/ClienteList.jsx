@@ -1,10 +1,10 @@
-'use cliennt'
+
 import {useState, useEffect} from 'react';
 import style from './styles.module.css'
 
 
-export default function ClienteList({ clientes = []}) {
-  const[list, setList] = useState(clientes);
+export default function ClienteList({ clientes, onDeleteConsumidor}) {
+  const[list, setList] = useState(clientes || []);
 
   useEffect(() => {
     setList(clientes);
@@ -18,7 +18,7 @@ export default function ClienteList({ clientes = []}) {
   return (
     <ul>
       {list.map((agendamento) => (
-        <li key={agendamento.agendamentoid}>  
+        <li className={style.list} key={agendamento.agendamentoid}>  
 
           <span> 
             {agendamento.nomeservico} - {new Date (agendamento.datahora).toLocaleString('pt-BR',{
@@ -26,8 +26,7 @@ export default function ClienteList({ clientes = []}) {
               timeStyle: 'short' 
              
             } 
-          
-            )} - <div className={style.concluido}>{agendamento.concluido ? 'Concluido': ' Pendente'}</div>
+            )} <div className={style.concluido}>{agendamento.concluido ? 'Concluido': ' Pendente'}</div>
            
           </span> 
 
@@ -37,8 +36,8 @@ export default function ClienteList({ clientes = []}) {
            checked={agendamento.concluido ?? false}
             onChange={() => toggleConcluido(agendamento.agendamentoid)}
             style={{ marginLeft: '1600px'}}
-          
           ></input>
+          
           </form>
         </li>
       ))}

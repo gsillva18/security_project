@@ -1,5 +1,7 @@
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "./context/AuthContext"; // importe o AuthProvider
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,21 +20,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <div>
-      <div className="barra"></div>
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`} >
-
-        
-        < header >
-
-       
-        
-        </header>
-        {children}
-
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <AuthProvider> {/* <-- envolve todo o app com o AuthProvider */}
+          <div className="barra"></div>
+          <header></header>
+          
+          {children} {/* todas as páginas vão ter acesso ao contexto */}
+        </AuthProvider>
       </body>
     </html>
-    </div>
   );
 }
+

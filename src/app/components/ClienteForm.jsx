@@ -1,61 +1,61 @@
-import { useState }  from 'react'
 
-import style from './styles.module.css';
+'use client'
+import { useState, useEffect } from 'react'
+import style from "./styles.module.css"
 
-export default function ClienteForm({ onAddCliente }) {
-    const [datahora, setDatahora] = useState('')
-    const [nomeservico, setNomeservico] = useState('')
-    
-   
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        onAddCliente({ nomeservico, datahora})
-        setDatahora(''),
-        setNomeservico('')
-    }
+export default function ClienteForm({ onAddAgendamento }) {
+  const [servico, setServico] = useState([])
+  const [servicoId, setServicoId] = useState('')
+  const [data, setData] = useState('')
+  const [hora, setHora] = useState('')
+  const [horarios, setHorarios] = useState([])
 
-    return (
-        <form onSubmit={handleSubmit}>  
+  useEffect(() => { fetchServicos() }, [])
 
-        <h2 className={style.h2}> Qual o serviço de hoje?</h2>
-        
-        <br></br>
-        <select className={style.container}
-    
-        value={nomeservico}
-        onChange={(e) => setNomeservico(e.target.value)}
-        required
-        >
-        
-        <option value=""> Selecione o serviço </option>
-        <option value="corte"> Corte</option>
-        <option value="barba"> Barba</option>
-        <option value="corte + barba"> Corte + barba </option>
-        </select>
-   
+  const fetchServicos = async () => {
+    const res = await fetch('/api/servicos')
+    const data = await res.json()
+    setServico(Array.isArray(data) ? data : [])
+  }
 
-        <h2 className={style.h22}>Escolha o horário </h2>
-        <br></br>
-        <input className={style.horario}
-        type="datetime-local"
-        value={datahora}
-        onChange={(e) => setDatahora(e.target.value)}
-        required
-         />
+  const fetchHorarios = async (dataSelecionada) => {
+    setData(dataSelecionada)
+    setHora('')
+    if (!dataSelecionada) { setHorarios([]); return }
+    const res = await fetch(`/api/horarios?data=${dataSelecionada}`)
+    const json = await res.json()
+    setHorarios(Array.isArray(json.horariosDisponiveis) ? json.horariosDisponiveis : [])
+  }
 
-        <br></br>
-        
-        <button className={style.botao} type="submit">
-            Agendar
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (!servicoId) return alert('Selecione um serviço')
+    if (!data || !hora) return alert('Selecione a data e o horário')
+    const datahora = `${data} ${hora}:00`
+    onAddAgendamento({ id_servico: servicoId, datahora })
+  }
 
-        </button>
+  return (
+    <form onSubmit={handleSubmit}>
+      <label className={style.servicoT}>Qual o serviço de hoje?</label>
+      <select className={style.selecioneS} value={servicoId} onChange={e => setServicoId(e.target.value)}>
+        <option value="">Selecione um serviço</option>
+        {servico.map(s => <option key={s.id} value={s.id}>{s.nome}</option>)}
+      </select>
 
-        <div className={style.barra}>
+      
+      <input className={style.dataLabel} type="date" value={data} onChange={e => fetchHorarios(e.target.value)} />
 
-        </div>
-        
-        
-        </form>
-    )
+      <label className={style.horarioD}>Escolha um Horário disponível:</label>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {horarios.length === 0 && <li className={style.dataS}> Selecione uma data</li>}
+        {horarios.map(h => (
+          <li className={style.escolherH} key={h} onClick={() => setHora(h)}
+              style={{ cursor: 'pointer', fontWeight: h===hora?'bold':'normal' }}>{h}</li>
+        ))}
+      </ul>
 
+      <button className={style.botao} type="submit">Agendar</button>
+    </form>
+  )
 }

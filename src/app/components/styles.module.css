@@ -6,17 +6,86 @@
   font-family: 'Times New Roman', Times, serif;
 }
 
+.servicoT{
+  font-family: 'Times New Roman', Times, serif;
+  color:#ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  position: relative;
+  bottom: -240px;
+  left: 300px;
+
+}
+.selecioneS {
+  position: relative;
+  top: 350px;
+  left: 10px;
+  padding: 12px 120px;
+  border-radius: 10px;
+  background-color: rgb(214, 210, 205);
+  color: black;
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.horarioD{
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  
+}
+
+.escolherH {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+  position: relative;
+  left: 1350px;
+  top: 65px;
+  cursor: pointer;
+}
+.escolherH:hover {
+
+ 
+  color:#e9ca4f
+}
+
+.dataLabel{
+
+  position: relative;
+  top: 550px;
+  left: -470px;
+  padding: 12px 150px;
+  border-radius: 10px;
+  background-color: rgb(214, 210, 205);
+  color: black;
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+
+}
+
+.dataS {
+  font-family: 'Times New Roman', Times, serif;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  position: fixed;   /* fixa na tela */
+  top: 545;         /* distância do topo da tela */
+  left: 300px;       /* distância da borda esquerda */
+  z-index: 1000;     /* garante que fique acima de outros elementos */
+}
+
 .botao {
   display: inline-block;
-  padding: 14px 200px;
+  padding: 14px 150px;
   border-radius: 40px;
   border: 3px solid #ffde59;
   background: transparent;
   color: #f5efda;
   cursor: pointer;
   transition: color .3s ease, box-shadow .3s ease, transform .1s ease;
-  position: relative;
-  top: 520px;
+  position: fixed;
+  top: 800px;
   left: 1200px;
   font-size: 30px;
   font-family: 'Times New Roman', Times, serif;
@@ -157,9 +226,10 @@ html, body {
   margin-left: 1600px;
   font-size: 90px;
   border-radius: 40px;
-  
- 
+  cursor:pointer
 }
+
+
 
 .teste {
   color: rgb(255, 255, 255);
@@ -171,11 +241,20 @@ html, body {
 }
 
 .concluido {
-  color: rgb(194, 0, 0);
-  position: relative;
+  color: rgb(255, 255, 255);
+  position: fixed;
   margin-left: 1500px;
   display: flex;
-  margin-top: 10px;
-  
-
+  margin-top: 0px;
+  cursor: pointer;
 }
+
+.list {
+  position: relative;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 30px;
+  margin-left: 150px;
+}
+
+
+
