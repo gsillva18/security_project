@@ -3,7 +3,7 @@
 import { useAuth } from '../context/AuthContext'
 import style from "./page.module.css"
 import { useEffect, useState } from 'react'
-import { Calendar, Trash2, MessageCircleQuestionMark, MapPin, CircleUserRound} from "lucide-react"
+import { Calendar, Trash2, MessageCircleQuestionMark, MapPin, CircleUserRound } from "lucide-react"
 
 
 export default function Perfil() {
@@ -14,13 +14,13 @@ export default function Perfil() {
   useEffect(() => {
     if (!usuarioLogado?.id) return;
 
-    async function fetchAgendamentos(){
+    async function fetchAgendamentos() {
       try {
-         const response = await fetch(`/api/agendamento?consumidorId=${usuarioLogado.id}`)
-         const data = await response.json();
-         setAgendamentos(data);
+        const response = await fetch(`/api/agendamento?consumidorId=${usuarioLogado.id}`)
+        const data = await response.json();
+        setAgendamentos(data);
 
-         setAgendamentos(data);
+        setAgendamentos(data);
 
         const agora = new Date();
         const futuros = data.filter(a => new Date(a.datahora) > agora);
@@ -29,111 +29,111 @@ export default function Perfil() {
       } catch (error) {
         console.error("Erro ao buscar agendamento", error)
       }
-  }
+    }
 
-   fetchAgendamentos();
-}, [usuarioLogado]);
+    fetchAgendamentos();
+  }, [usuarioLogado]);
 
 
   if (!usuarioLogado) return <p>Você não está logado</p>
 
   async function handleDelete(id) {
-  if (!id) return alert('ID inválido');
+    if (!id) return alert('ID inválido');
 
-  const confirmDelete = window.confirm("Deseja realmente cancelar este agendamento?");
-  if (!confirmDelete) return;
+    const confirmDelete = window.confirm("Deseja realmente cancelar este agendamento?");
+    if (!confirmDelete) return;
 
-  try {
-    const response = await fetch('/api/agendamento', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id }) 
-    });
+    try {
+      const response = await fetch('/api/agendamento', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id })
+      });
 
-    const data = await response.json();
-    console.log(data); 
-    if (response.ok) {
-      alert(data.message);
-      setAgendamentos(prev => prev.filter(a => a.agendamentoid !== id));
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        alert(data.message);
+        setAgendamentos(prev => prev.filter(a => a.agendamentoid !== id));
 
-      const agora = new Date();
-      const futuros = agendamentos
-        .filter(a => a.agendamentoid !== id && new Date(a.datahora) > agora)
-        .sort((a, b) => new Date(a.datahora) - new Date(b.datahora));
-      setProximo(futuros[0] || null);
-    } else {
-      alert(data.error || "Erro ao cancelar serviço");
+        const agora = new Date();
+        const futuros = agendamentos
+          .filter(a => a.agendamentoid !== id && new Date(a.datahora) > agora)
+          .sort((a, b) => new Date(a.datahora) - new Date(b.datahora));
+        setProximo(futuros[0] || null);
+      } else {
+        alert(data.error || "Erro ao cancelar serviço");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao cancelar serviço");
     }
-  } catch (err) {
-    console.error(err);
-    alert("Erro ao cancelar serviço");
   }
-}
 
 
-return (
-    <div> 
-     
-    <h1 className={style.nome}> <CircleUserRound size={35} color="#caaa00"/> {usuarioLogado.nome}</h1>
+  return (
+    <div>
 
-  <a href="agendamento" className={style.buttonAgendar}>Agendar Horário</a>
-   <a href="historico" className={style.buttonHistorico}>Ver Histórico</a>
+      <h1 className={style.nome}> <CircleUserRound size={35} color="#caaa00" /> {usuarioLogado.nome}</h1>
 
-   <p className={style.duvida}>Dúvidas? fale comigo no whatsapp</p>
-    
-   <a className={style.whats} href="https://wa.me/558394182171?">  <MessageCircleQuestionMark size={30} color="green" /> Clique aqui! </a>
+      <a href="agendamento" className={style.buttonAgendar}>Agendar Horário</a>
+      <a href="historico" className={style.buttonHistorico}>Ver Histórico</a>
 
-   <div className={style.quadroA}>
+      <p className={style.duvida}>Dúvidas? fale comigo no whatsapp</p>
 
-     <MapPin size={18} color="black"/>
+      <a className={style.whats} href="https://wa.me/558394182171?">  <MessageCircleQuestionMark size={30} color="green" /> Clique aqui! </a>
 
-    <h2 className={style.avisos}> Estamos abertos até o meio dia </h2>
-   </div>
+      <div className={style.quadroA}>
 
-   <div className={style.quadroB}></div>]
-   <div className={style.quadroC}></div>
-   
+        <MapPin size={18} color="black" />
 
-
-<div className={style.quadro}>
-  <img src="bigode.png" className={style.img} />
-
-
-  <div className={style.proximoServico}>
-    <h1 className={style.h11}>Seu próximo serviço:</h1>
-
-    {proximo ? (
-      <div className={style.detalhes}>
-        <h2 className={style.servico}>{proximo.servico}</h2>
-        <p className={style.datahora}>
-          <Calendar size={18} color="#b59b35" />
-          {new Date(proximo.datahora).toLocaleDateString("pt-BR", {
-            day: "2-digit",
-            month: "2-digit",
-          })}{" "}
-          às{" "}
-          {new Date(proximo.datahora).toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-        </p>
-
-        <button className={style.cancelar} onClick={() => handleDelete(proximo?.agendamentoid)}
-        >
-          <Trash2 size={17} color="#000000ff" />
-          <span> Cancelar</span>
-        </button>
-
-
+        <h2 className={style.avisos}> Estamos abertos até o meio dia </h2>
       </div>
-    ) : (
-      <p className={style.naoTem}>Você não possui serviços agendados.</p>
-    )}
-  </div>
-</div>
 
- </div>
+      <div className={style.quadroB}></div>]
+      <div className={style.quadroC}></div>
 
-);
+
+
+      <div className={style.quadro}>
+        <img src="bigode.png" className={style.img} />
+
+
+        <div className={style.proximoServico}>
+          <h1 className={style.h11}>Seu próximo serviço:</h1>
+
+          {proximo ? (
+            <div className={style.detalhes}>
+              <h2 className={style.servico}>{proximo.servico}</h2>
+              <p className={style.datahora}>
+                <Calendar size={18} color="#b59b35" />
+                {new Date(proximo.datahora).toLocaleDateString("pt-BR", {
+                  day: "2-digit",
+                  month: "2-digit",
+                })}{" "}
+                às{" "}
+                {new Date(proximo.datahora).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </p>
+
+              <button className={style.cancelar} onClick={() => handleDelete(proximo?.agendamentoid)}
+              >
+                <Trash2 size={17} color="#000000ff" />
+                <span> Cancelar</span>
+              </button>
+
+
+            </div>
+          ) : (
+            <p className={style.naoTem}>Você não possui serviços agendados.</p>
+          )}
+        </div>
+      </div>
+
+    </div>
+
+  );
 
 }
